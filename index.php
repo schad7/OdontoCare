@@ -15,6 +15,7 @@ $totalPacientes = $pdo->query("SELECT COUNT(*) FROM paciente")->fetchColumn();
 $totalConsultas = $pdo->query("SELECT COUNT(*) FROM consulta")->fetchColumn();
 $totalProcedimentos = $pdo->query("SELECT COUNT(*) FROM procedimento")->fetchColumn();
 $totalPagamentos = $pdo->query("SELECT COUNT(*) FROM pagamento")->fetchColumn();
+$totalMateriais = $pdo->query("SELECT COUNT(*) FROM material")->fetchColumn();
 
 $consultasHoje = $pdo->query("
     SELECT COUNT(*) FROM consulta
@@ -25,7 +26,9 @@ $valorRecebido = $pdo->query("
     SELECT SUM(valorTotal) FROM pagamento
     WHERE statusPagamento = 'Pago'
 ")->fetchColumn();
-
+$totalMateriais = $pdo->query("
+    SELECT COUNT(*) FROM material
+")->fetchColumn();
 $valorPendente = $pdo->query("
     SELECT SUM(valorTotal) FROM pagamento
     WHERE statusPagamento = 'Pendente'
@@ -161,17 +164,33 @@ $proximasConsultas = $pdo->query("
                 </div>
             </a>
         </div>
-
         <div class="col-md mb-3">
-            <div class="card shadow border-warning h-100">
+            <div class="card shadow border-secondary h-100">
                 <div class="card-body text-center">
-                    <h6>⚠️ Baixo Estoque</h6>
-                    <h1><?= $totalBaixoEstoque ?></h1>
+                    <h6>📦 Materiais</h6>
+                    <h1><?= $totalMateriais ?></h1>
                 </div>
             </div>
         </div>
+        <div class="col-md mb-3">
+            <a href="material.php" class="text-decoration-none text-dark">
+                <div class="card shadow border-secondary h-100">
+                    <div class="card-body text-center">
+                        <h6>📦 Materiais</h6>
+                        <h1><?= $totalMateriais ?></h1>
+                    </div>
+                </div>
+            </a>
+        </div>
 
+<div class="col-md mb-3">
+    <div class="card shadow border-warning h-100">
+        <div class="card-body text-center">
+            <h6>⚠️ Baixo Estoque</h6>
+            <h1><?= $totalBaixoEstoque ?></h1>
+        </div>
     </div>
+</div>
 
     <div class="row mt-4">
 
