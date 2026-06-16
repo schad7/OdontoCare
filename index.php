@@ -165,14 +165,6 @@ $proximasConsultas = $pdo->query("
             </a>
         </div>
         <div class="col-md mb-3">
-            <div class="card shadow border-secondary h-100">
-                <div class="card-body text-center">
-                    <h6>📦 Materiais</h6>
-                    <h1><?= $totalMateriais ?></h1>
-                </div>
-            </div>
-        </div>
-        <div class="col-md mb-3">
             <a href="material.php" class="text-decoration-none text-dark">
                 <div class="card shadow border-secondary h-100">
                     <div class="card-body text-center">
